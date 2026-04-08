@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prerna Gouda — UI/UX Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a1a;
+    --ink-mid: #3d3d3d;
+    --ink-soft: #6b6b6b;
+    --ink-faint: #999;
+    --accent: #c0392b;
+    --accent-soft: #f5e9e8;
+    --rule: #d4d4d4;
+    --page: #faf9f7;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  @media print {
+    body { background: white !important; }
+    .page { box-shadow: none !important; margin: 0 !important; }
+  }
+
+  body {
+    font-family: var(--sans);
+    background: #e8e6e0;
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .page {
+    background: var(--page);
+    width: 780px;
+    max-width: 100%;
+    padding: 52px 56px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+  }
+
+  /* ── Header ── */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .header-name {
+    font-family: var(--serif);
+    font-size: 44px;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .header-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .header-contact {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .header-contact a,
+  .header-contact span {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: block;
+  }
+
+  .header-contact a:hover { color: var(--accent); }
+
+  /* ── Two column layout ── */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 36px;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {}
+
+  .sidebar-section {
+    margin-bottom: 26px;
+  }
+
+  .sidebar-heading {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    font-size: 12px;
+    color: var(--ink-mid);
+    padding: 3px 0;
+    padding-left: 10px;
+    position: relative;
+  }
+
+  .sidebar ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-faint);
+    font-size: 10px;
+  }
+
+  .tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 10.5px;
+    font-weight: 500;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── Main ── */
+  .main {}
+
+  .section {
+    margin-bottom: 26px;
+  }
+
+  .section-heading {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .summary {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    font-weight: 300;
+  }
+
+  .summary strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ── Experience ── */
+  .exp-item {
+    margin-bottom: 22px;
+  }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+
+  .exp-role {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+
+  .exp-date {
+    font-size: 11px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .exp-company {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    padding: 2.5px 0 2.5px 14px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 4px;
+  }
+
+  /* ── Projects ── */
+  .project-item {
+    margin-bottom: 16px;
+  }
+
+  .project-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .project-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .project-type {
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .project-sub {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+
+  .project-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .project-bullets li {
+    font-size: 12px;
+    color: var(--ink-mid);
+    padding: 2px 0 2px 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .project-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 3px;
+  }
+
+  /* ── Education ── */
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .edu-degree {
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .edu-school {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .edu-date {
+    font-size: 11px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div>
+      <div class="header-name">Prerna Gouda</div>
+      <div class="header-title">UI/UX Designer</div>
+    </div>
+    <div class="header-contact">
+      <span>Bengaluru, Karnataka</span>
+      <a href="tel:8480382001">+91 84803 82001</a>
+      <a href="mailto:prernagouda303@gmail.com">prernagouda303@gmail.com</a>
+      <a href="https://www.linkedin.com/in/prerna-gouda179" target="_blank">linkedin.com/in/prerna-gouda179</a>
+      <a href="https://prernagouda303.wixstudio.com/portfolioweb" target="_blank">Portfolio Website</a>
+    </div>
+  </header>
+
+  <div class="body-grid">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Core Skills</div>
+        <ul>
+          <li>UI/UX Design</li>
+          <li>User Research</li>
+          <li>Wireframing</li>
+          <li>Prototyping</li>
+          <li>User Flow Design</li>
+          <li>Information Architecture</li>
+          <li>Visual Design</li>
+          <li>Interaction Design</li>
+          <li>Responsive Design</li>
+          <li>Design Systems</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Tools</div>
+        <div class="tag-group">
+          <span class="tag">Figma</span>
+          <span class="tag">Figma Make</span>
+          <span class="tag">FigJam</span>
+          <span class="tag">Framer</span>
+          <span class="tag">Wix Studio</span>
+          <span class="tag">Canva</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Design Focus</div>
+        <ul>
+          <li>SaaS Platforms</li>
+          <li>Landing Pages</li>
+          <li>Dashboard UI</li>
+          <li>Configuration Flows</li>
+          <li>Mobile-first Design</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Education</div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-degree">MCA</div>
+            <div class="edu-school">Siksha 'O' Anusandhan, Odisha</div>
+          </div>
+          <div class="edu-date">2023–25</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-degree">BSc Computer Science</div>
+            <div class="edu-school">Utkal University</div>
+          </div>
+          <div class="edu-date">2020–23</div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- SUMMARY -->
+      <section class="section">
+        <div class="section-heading">Profile</div>
+        <p class="summary">
+          UI/UX Designer with <strong>4+ months of hands-on internship experience</strong> at a product-focused startup, having independently owned end-to-end design of multiple platform modules — from discovery and wireframing through HD prototyping and handoff. Skilled at translating complex, multi-stakeholder workflows into clean, intuitive interfaces with strong visual polish.
+        </p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section">
+        <div class="section-heading">Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">UI/UX Designer — Intern</span>
+            <span class="exp-date">Dec 2024 – Present</span>
+          </div>
+          <div class="exp-company">Tatva:Ops · Bengaluru, Karnataka</div>
+          <ul class="exp-bullets">
+            <li>Designed an end-to-end <strong>Interior & Exterior Configuration Platform</strong> enabling clients to personalise spaces — covering style selection, colour palette tools, before/after comparison views, 3D virtualisation containers, and a multi-feature tab bar; delivered with HD Figma animations and interactive prototypes.</li>
+            <li>Built a <strong>glass-morphism design system</strong> used consistently across the platform, establishing reusable components, spacing tokens, and motion guidelines adopted by the team.</li>
+            <li>Created a <strong>Universal Vendor Quote Form</strong> that captures detailed project requirements through a structured multi-step questionnaire and auto-generates a clean, client-ready PDF invoice — reducing back-and-forth between vendors and clients.</li>
+            <li>Designed a <strong>Top 3 Vendor Recommendation Module</strong> that surfaces the highest-rated vendors matching customer requirements, displaying detailed profiles, ratings, and availability for site-visit scheduling — streamlining the vendor-selection journey.</li>
+            <li>Owned the design of the <strong>main marketing landing page</strong> for tatva:Ops — including hero section, platform feature walkthroughs, and service showcase — using modern glass-effect UI and structured narrative flow to drive conversion.</li>
+            <li>Produced <strong>social media graphics and Figma animations</strong> for the brand's digital presence, maintaining visual consistency with the product design language.</li>
+            <li>Contributed to <strong>Finance and PMO platform modules</strong>, designing structured data views and workflow screens to support internal operations teams.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- PERSONAL PROJECTS -->
+      <section class="section">
+        <div class="section-heading">Projects</div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Dennel — E-commerce Website</span>
+            <span class="project-type">Personal Project · Web</span>
+          </div>
+          <div class="project-sub">Wix Studio, UI/UX Design</div>
+          <ul class="project-bullets">
+            <li>Designed and developed a fully responsive e-commerce website with clear navigation, visual hierarchy, and product browsing flows that improve discoverability and usability.</li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">ATG Hotels — Booking Landing Page</span>
+            <span class="project-type">Case Study · Web</span>
+          </div>
+          <div class="project-sub">Figma, UI/UX Design</div>
+          <ul class="project-bullets">
+            <li>Designed a conversion-focused landing page for a hotel booking platform; structured content flow to guide users naturally toward a booking action with clear value propositions and trust signals.</li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">School Discovery Platform — Redesign</span>
+            <span class="project-type">Case Study · Web</span>
+          </div>
+          <div class="project-sub">Figma, Wireframing & UX Design</div>
+          <ul class="project-bullets">
+            <li>Created detailed wireframes for a school discovery and comparison platform (homepage, listing, comparison, and detail pages); applied strong information hierarchy to simplify the decision-making journey for parents.</li>
+          </ul>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+</div>
+</body>
+</html>
